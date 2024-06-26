@@ -1,0 +1,63 @@
+---
+title: "Iris Dataset Analysis"
+format: pdf
+editor: visual
+---
+
+# 1 - Introduction
+
+We use the built-in `iris` dataset within `R` to demonstrate a simple data visualisation. This dataset is comprised of 150 observations, each recording four characteristics of the iris flowers (petal length, petal width, sepal length, sepal width) and their species.
+
+## *Data Loading*
+
+Lets bring the data into our local environment and view the first few rows of the dataset.
+
+```{r, echo = FALSE}
+data(iris)
+head(iris)
+```
+
+## *Data Structure*
+
+Diving deeper into the datasets composition and the various data types.
+
+```{r, echo = FALSE}
+str(iris)
+```
+
+# 2 - Visualisation
+
+## *Violin Plots for petal and sepal measurements across each species*
+
+These provide information on both the distribution and the frequency of values which can describe the differences between the species. **`ggplot2`** is used to plot these.
+
+```{r, echo = FALSE,message=FALSE,warning=FALSE}
+library(ggplot2)
+# violin plot for sepal length across all species
+ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_violin() +
+  labs(x = "Species", y = "Sepal Length (cm)", title = "Violin Plot for Sepal Length") +
+  theme_bw()
+
+# violin plot for sepal width 
+ggplot(iris, aes(x = Species, y = Sepal.Width, fill = Species)) +
+  geom_violin() +
+  labs(x = "Species", y = "Sepal Width (cm)", title = "Violin Plot for Sepal Width") +
+  theme_bw()
+
+# violin plot for petal length
+ggplot(iris, aes(x = Species, y = Petal.Length, fill = Species)) +
+  geom_violin() +
+  labs(x = "Species", y = "Petal Length (cm)", title = "Violin Plot for Petal Length") +
+  theme_bw()
+
+# violin plot for petal width
+ggplot(iris, aes(x = Species, y = Petal.Width, fill = Species)) +
+  geom_violin() +
+  labs(x = "Species", y = "Petal Width (cm)", title = "Violin Plot for Petal Width") +
+  theme_bw()
+```
+
+## *Visualisations Summary*
+
+These plots clearly show the distinctive differences among the 3 species across both petal and sepal lengths and widths Setosa flowers have a tight distribution in their petal length and width, around 1.5 and 0.25 respectively, whereas both versicolor and virginica have much longer lengths in this category with a wider, more spread out distribution.
